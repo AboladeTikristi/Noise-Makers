@@ -6,8 +6,11 @@ app.use('/public/', express.static('./public'));
 app.use(express.static("public"))
 const bodyParser = require("body-parser");
 const { all } = require("express/lib/application");
+const cors=require('cors')
 const mongoose=require("mongoose")
-const URI="mongodb+srv://AboladeTikristi:tikristi@cluster0.8i7iv.mongodb.net/noise_maker?retryWrites=true&w=majority"
+app.use(cors())
+require('dotenv').config()
+const URI=process.env.MONGO_URI;
 app.use(bodyParser.urlencoded({extended:true}))
 app.set("view engine","ejs");
 mongoose.connect(URI,(err)=>{
